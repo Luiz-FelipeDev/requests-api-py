@@ -1,4 +1,5 @@
 from src.infra.swapi_api_consumer import SwapiApiConsumer
+from src.errors.http_request_error import HttpRequestError
 
 def test_get_starships():
     ''' Criando teste do método associado as informações das naves '''
@@ -16,4 +17,21 @@ def test_get_starships():
     
     # TODO serve para saber se a instância pertence a uma determinada classe
     assert isinstance(get_starships_response.request.response['results'], list) 
+    
+''' 
+def test_get_starships_http_error():
+    starship = SwapiApiConsumer()
+    page = 100
+    try:
+        starship.get_starships(page=page)
+        assert True is False
+    except HttpRequestError as error:
+        assert error.message is not None 
+        assert error.status_code is not None
+        print(error.message)
+        print(error.status_code)
+    
+'''   
+    
+    
     
